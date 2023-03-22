@@ -8,7 +8,11 @@ def update_grid(grid, GRID_SIZE):
     for i in range(GRID_SIZE[0]):
         for j in range(GRID_SIZE[1]):
             # Count the number of live neighbors
-            num_neighbors = np.sum(grid[max(i-1, 0):min(i+2, GRID_SIZE[0]), max(j-1, 0):min(j+2, GRID_SIZE[1])]) - grid[i, j]
+            neigh = grid[max(i-1, 0):min(i+2, GRID_SIZE[0]), max(j-1, 0):min(j+2, GRID_SIZE[1])]
+            sum_neigh = np.sum(neigh) - grid[i, j]
+            temp_neigh = np.array(neigh)
+            temp_neigh[1,1] = 0
+            num_neigh = len(temp_neigh[temp_neigh > 0])
 
 
 
@@ -50,9 +54,50 @@ def update_grid(grid, GRID_SIZE):
             #elif grid[i,j] == 0 and (num_neighbors == 3 or num_neighbors == 4 or num_neighbors == 7):
             #    new_grid[i,j] = 1
 
-            if grid[i,j] == 1 and (num_neighbors != 3 and num_neighbors != 4 and num_neighbors != 7):
-                new_grid[i,j] = 0
-            elif grid[i,j] == 0 and (num_neighbors == 3 or num_neighbors == 5 or num_neighbors == 7):
-                new_grid[i,j] = 1
+            # can generate 4 leaf clovers
+            #if grid[i,j] == 0 and (num_neigh == 3):
+            #    new_grid[i,j] = 1
+            #elif grid[i,j] == 1 and (num_neigh == 4):
+            #    new_grid[i,j] = 2
+            #elif grid[i,j] == 1 and (num_neigh != 2 and num_neigh != 3):
+            #    new_grid[i,j] = 0
+            
+
+            # creates beautiful mandalas
+            #if grid[i,j] == 0:
+            #    if num_neigh == 3:
+            #        new_grid[i,j] = 1
+
+            #elif grid[i,j] == 1:
+            #    if sum_neigh == 5:
+            #        new_grid[i,j] = 2
+            #    elif num_neigh != 2 and num_neigh != 3:
+            #        new_grid[i,j] = 0
+
+            #elif grid[i,j] == 2:
+            #    if sum_neigh == 4 or num_neigh == 4:
+            #        new_grid[i,j] = 1
+            #    elif sum_neigh == 5:
+            #        pass
+            #    elif num_neigh != 2 and num_neigh != 3:
+            #        new_grid[i,j] = 0
+
+
+            if grid[i,j] == 0:
+                if num_neigh == 3:
+                    new_grid[i,j] = 1
+
+            elif grid[i,j] == 1:
+                if sum_neigh == 5:
+                    new_grid[i,j] = 2
+                elif num_neigh != 2 and num_neigh != 3:
+                    new_grid[i,j] = 0
+
+            elif grid[i,j] == 2:
+                if sum_neigh == 6 or num_neigh == 4:
+                    new_grid[i,j] = 1
+                elif num_neigh != 3 and num_neigh != 3 and num_neigh != 5:
+                    new_grid[i,j] = 0
+
 
     return new_grid
