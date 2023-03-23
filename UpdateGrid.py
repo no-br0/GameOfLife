@@ -83,21 +83,35 @@ def update_grid(grid, GRID_SIZE):
             #        new_grid[i,j] = 0
 
 
-            if grid[i,j] == 0:
-                if num_neigh == 3:
-                    new_grid[i,j] = 1
 
+            #if grid[i,j] == 0:
+            #    if num_neigh == 3:
+            #        new_grid[i,j] = 1
+
+            #elif grid[i,j] == 1:
+            #    if sum_neigh == 5:
+            #        new_grid[i,j] = 2
+            #    elif num_neigh != 2 and num_neigh != 3:
+            #        new_grid[i,j] = 0
+
+            #elif grid[i,j] == 2:
+            #    if sum_neigh == 6 or num_neigh == 4:
+            #        new_grid[i,j] = 1
+            #    elif num_neigh != 3 and num_neigh != 3 and num_neigh != 5:
+            #        new_grid[i,j] = 0
+
+            if grid[i,j] == 0:
+                if sum_neigh == 3:
+                    new_grid[i,j] = 1
             elif grid[i,j] == 1:
                 if sum_neigh == 5:
                     new_grid[i,j] = 2
-                elif num_neigh != 2 and num_neigh != 3:
+                elif sum_neigh != 2 and sum_neigh != 3:
                     new_grid[i,j] = 0
-
             elif grid[i,j] == 2:
-                if sum_neigh == 6 or num_neigh == 4:
+                if sum_neigh == 1 or sum_neigh == 4:
                     new_grid[i,j] = 1
-                elif num_neigh != 3 and num_neigh != 3 and num_neigh != 5:
+                elif sum_neigh != 3 and sum_neigh != 5:
                     new_grid[i,j] = 0
-
 
     return new_grid

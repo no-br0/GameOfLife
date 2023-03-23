@@ -7,7 +7,7 @@ FPS = 60
 COUNTER = 0
 
 WINDOW_SIZE = [1200, 1200]
-GRID_SIZE = [200,200]
+GRID_SIZE = [150,150]
 
 CELL_SIZE = [WINDOW_SIZE[0]// GRID_SIZE[0], WINDOW_SIZE[1]//GRID_SIZE[1]]
 
@@ -67,11 +67,11 @@ if __name__ == "__main__":
             if event.type == pygame.MOUSEBUTTONUP:
                 handle_mouse_event()
 
-        if simulating and COUNTER == 39:
+        if simulating and COUNTER == 29:
             grid = update_grid(grid, GRID_SIZE)
 
         draw_grid(grid, screen, CELL_SIZE, GRID_SIZE)
-        if COUNTER < 39:
+        if COUNTER < 29:
             COUNTER += 1
         else:
             COUNTER = 0
