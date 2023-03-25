@@ -1,5 +1,5 @@
 import pygame
-from Colors import DEAD, MUSHROOM, GRASS
+from Colors import DEAD, MUSHROOM, GRASS, WATER
 
 def draw_grid(grid, screen, CELL_SIZE, GRID_SIZE):
     # Clear the screen
@@ -16,6 +16,8 @@ def draw_grid(grid, screen, CELL_SIZE, GRID_SIZE):
                 pygame.draw.rect(screen, MUSHROOM, rect)
             elif grid[i,j] == 2:
                 pygame.draw.rect(screen, GRASS, rect)
+            elif grid[i,j] == 3:
+                pygame.draw.rect(screen, WATER, rect)
 
     # Update the screen
     pygame.display.update()
