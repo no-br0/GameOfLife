@@ -9,13 +9,12 @@ def update_grid(grid, GRID_SIZE):
     for i in range(GRID_SIZE[0]):
         for j in range(GRID_SIZE[1]):
             # Count the number of live neighbors
-            neigh = grid[max(i-1, 0):min(i+2, GRID_SIZE[0]), max(j-1, 0):min(j+2, GRID_SIZE[1])]
-            sum_neigh = np.sum(neigh) - grid[i, j]
-            temp_neigh = np.array(neigh)
-            temp_neigh[1,1] = 0
-            num_neigh = len(temp_neigh[temp_neigh > 0])
+            neigh = np.array(grid[max(i-1, 0):min(i+2, GRID_SIZE[0]), max(j-1, 0):min(j+2, GRID_SIZE[1])])
+            neigh[1,1] = 0
+            num_neigh = neigh[neigh > 0].size
+            sum_neigh = np.sum(neigh)
 
-
+            
 
             #if grid[i, j] == 1 and (num_neighbors < 2 or num_neighbors > 4):
             #    new_grid[i, j] = 0
@@ -134,28 +133,170 @@ def update_grid(grid, GRID_SIZE):
 
 
 
-            if grid[i,j] == Dead:
-                if num_neigh == 3:
-                    new_grid[i,j] = Mushroom
+            #if grid[i,j] == Dead:
+            #    if num_neigh == 3:
+            #        new_grid[i,j] = Mushroom
+            #elif grid[i,j] == Mushroom:
+            #    if sum_neigh == 5:
+            #        new_grid[i,j] = Grass
+            #    elif sum_neigh != 2 and sum_neigh != 3:
+            #        new_grid[i,j] = Dead
+            #elif grid[i,j] == Grass:
+            #    if sum_neigh == 1 or sum_neigh == 4:
+            #        new_grid[i,j] = Mushroom
+            #    elif sum_neigh == 2 or sum_neigh == 6:
+            #        new_grid[i,j] = Water
+            #    elif num_neigh == 2:
+            #        new_grid[i,j] = Water
+            #    elif sum_neigh != 5:
+            #        new_grid[i,j] = Dead
+            #elif grid[i,j] == Water:
+            #    if num_neigh == 0 or num_neigh > 6:
+            #        new_grid[i,j] = Dead
 
+
+            
+            #if grid[i,j] == Dead:
+            #    if num_neigh == 3:
+            #        new_grid[i,j] = Mushroom
+            #elif grid[i,j] == Mushroom:
+            #    if sum_neigh == 5 or num_neigh == 4:
+            #        new_grid[i,j] = Grass
+            #    elif sum_neigh != 2 and sum_neigh != 3 and sum_neigh != 4:
+            #        new_grid[i,j] = Dead
+            #elif grid[i,j] == Grass:
+            #    if sum_neigh == 1:
+            #        new_grid[i,j] = Mushroom
+            #    elif sum_neigh == 2 or sum_neigh == 6 or num_neigh == 3:
+            #        new_grid[i,j] = Water
+            #    elif sum_neigh != 5:
+            #        new_grid[i,j] = Dead
+            #elif grid[i,j] == Water:
+            #    if num_neigh == 0 or num_neigh > 4:
+            #        new_grid[i,j] = Dead
+
+
+
+            #if grid[i,j] == Dead:
+            #    if num_neigh == 3:
+            #        new_grid[i,j] = Mushroom
+            #elif grid[i,j] == Mushroom:
+            #    if num_neigh == 4:
+            #        new_grid[i,j] = Grass
+            #    elif num_neigh != 2 and num_neigh != 3:
+            #        new_grid[i,j] = Dead
+
+
+
+            #if grid[i,j] == Dead:
+            #    if num_neigh == 3:
+            #        new_grid[i,j] = Mushroom
+            #elif grid[i,j] == Mushroom:
+            #    if num_neigh == 4:
+            #        new_grid[i,j] = Grass
+            #    elif num_neigh != 2 and num_neigh != 3:
+            #        new_grid[i,j] = Dead
+            #elif grid[i,j] == Grass:
+            #    if num_neigh != 4:
+            #        new_grid[i,j] = Dead
+
+
+
+            #if grid[i,j] == Dead:
+            #    if num_neigh == 3:
+            #        new_grid[i,j] = Mushroom
+            #elif grid[i,j] == Mushroom:
+            #    if num_neigh == 4:
+            #        new_grid[i,j] = Grass
+            #    elif num_neigh != 2 and num_neigh != 3:
+            #        new_grid[i,j] = Dead
+            #elif grid[i,j] == Grass:
+            #    if num_neigh == 3:
+            #        new_grid[i,j] = Mushroom
+            #    elif num_neigh != 4:
+            #        new_grid[i,j] = Dead
+        
+
+
+            #if grid[i,j] == Dead:
+            #    if num_neigh == 3:
+            #        new_grid[i,j] = Mushroom
+            #elif grid[i,j] == Mushroom:
+            #    if num_neigh == 5:
+            #        new_grid[i,j] = Grass
+            #    elif num_neigh != 2 and num_neigh != 3:
+            #        new_grid[i,j] = Dead
+            #elif grid[i,j] == Grass:
+            #    if num_neigh == 3:
+            #        new_grid[i,j] = Mushroom
+            #    elif num_neigh != 5:
+            #        new_grid[i,j] = Dead
+
+
+
+            #if grid[i,j] == Dead:
+            #    if num_neigh == 3:
+            #        new_grid[i,j] = Mushroom
+            #elif grid[i,j] == Mushroom:
+            #    if num_neigh == 6:
+            #        new_grid[i,j] = Grass
+            #    elif num_neigh != 2 and num_neigh != 3:
+            #        new_grid[i,j] = Dead
+            #elif grid[i,j] == Grass:
+            #    if num_neigh == 3:
+            #        new_grid[i,j] = Mushroom
+            #    elif num_neigh != 6:
+            #        new_grid[i,j] = Dead
+
+
+
+            #if grid[i,j] == Dead:
+            #    if sum_neigh == 3:
+            #        new_grid[i,j] = Mushroom
+            #elif grid[i,j] == Mushroom:
+            #    if sum_neigh == 2:
+            #        new_grid[i,j] = Grass
+            #    elif sum_neigh != 2 and sum_neigh != 3:
+            #        new_grid[i,j] = Dead
+            #elif grid[i,j] == Grass:
+            #    if sum_neigh == 3:
+            #        new_grid[i,j] = Mushroom
+            #    elif sum_neigh == 5:
+            #        new_grid[i,j] = Water
+            #    elif sum_neigh != 2:
+            #        new_grid[i,j] = Dead
+            #elif grid[i,j] == Water:
+            #    if sum_neigh == 2:
+            #        new_grid[i,j] = Grass
+            #    elif sum_neigh > 2 and sum_neigh < 6:
+            #        new_grid[i,j] = Dead
+
+
+
+            if grid[i,j] == Dead:
+                if sum_neigh == 3:
+                    new_grid[i,j] = Mushroom
             elif grid[i,j] == Mushroom:
-                if sum_neigh == 5:
+                if sum_neigh == 4:
                     new_grid[i,j] = Grass
                 elif sum_neigh != 2 and sum_neigh != 3:
                     new_grid[i,j] = Dead
-
             elif grid[i,j] == Grass:
-                if sum_neigh == 1 or sum_neigh == 4:
+                if sum_neigh == 3:
                     new_grid[i,j] = Mushroom
-                elif sum_neigh == 2 or sum_neigh == 6:
+                elif sum_neigh == 4:
                     new_grid[i,j] = Water
-                elif num_neigh == 2:
-                    new_grid[i,j] = Water
-                elif sum_neigh != 5:
+                elif sum_neigh == 2:
+                    pass
+                else:
+                    new_grid[i,j] = Dead
+            elif grid[i,j] == Water:
+                if sum_neigh == 2:
+                    new_grid[i,j] = Grass
+                elif num_neigh >= 2 and num_neigh < 7:
+                    pass
+                else:
                     new_grid[i,j] = Dead
 
-            elif grid[i,j] == Water:
-                if num_neigh == 0 or num_neigh > 6:
-                    new_grid[i,j] = Dead
 
     return new_grid
