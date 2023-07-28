@@ -273,27 +273,54 @@ def update_grid(grid, GRID_SIZE):
 
 
 
+            #if grid[i,j] == Dead:
+            #    if sum_neigh == 3:
+            #        new_grid[i,j] = Mushroom
+            #elif grid[i,j] == Mushroom:
+            #   if sum_neigh == 4:
+            #        new_grid[i,j] = Grass
+            #    elif sum_neigh != 2 and sum_neigh != 3:
+            #        new_grid[i,j] = Dead
+            #elif grid[i,j] == Grass:
+            #    if sum_neigh == 3:
+            #        new_grid[i,j] = Mushroom
+            #    elif sum_neigh == 4:
+            #        new_grid[i,j] = Water
+            #    elif sum_neigh == 2:
+            #        pass
+            #    else:
+            #        new_grid[i,j] = Dead
+            #elif grid[i,j] == Water:
+            #    if sum_neigh == 2:
+            #        new_grid[i,j] = Grass
+            #    elif num_neigh >= 2 and num_neigh < 7:
+            #        pass
+            #    else:
+            #        new_grid[i,j] = Dead
+
+
+
             if grid[i,j] == Dead:
                 if sum_neigh == 3:
                     new_grid[i,j] = Mushroom
             elif grid[i,j] == Mushroom:
-                if sum_neigh == 4:
+                if sum_neigh == 2:
                     new_grid[i,j] = Grass
                 elif sum_neigh != 2 and sum_neigh != 3:
                     new_grid[i,j] = Dead
             elif grid[i,j] == Grass:
                 if sum_neigh == 3:
                     new_grid[i,j] = Mushroom
-                elif sum_neigh == 4:
+                elif sum_neigh == 6:
                     new_grid[i,j] = Water
-                elif sum_neigh == 2:
+                elif sum_neigh == 2 or sum_neigh == 4:
                     pass
                 else:
                     new_grid[i,j] = Dead
             elif grid[i,j] == Water:
                 if sum_neigh == 2:
                     new_grid[i,j] = Grass
-                elif num_neigh >= 2 and num_neigh < 7:
+                elif num_neigh >= 2 and num_neigh <= 6:
                     pass
                 else:
                     new_grid[i,j] = Dead
