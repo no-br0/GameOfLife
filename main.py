@@ -2,6 +2,7 @@ import numpy as np
 import pygame
 from DrawGrid import draw_grid
 from UpdateGrid import update_grid
+import UpdateGrid
 
 FPS = 60
 COUNTER = 0
@@ -67,8 +68,10 @@ if __name__ == "__main__":
             if event.type == pygame.MOUSEBUTTONUP:
                 handle_mouse_event()
 
+
+
         if simulating and COUNTER == 29:
-            grid = update_grid(grid, GRID_SIZE)
+            grid = UpdateGrid.update_grid(grid, GRID_SIZE)
 
         draw_grid(grid, screen, CELL_SIZE, GRID_SIZE)
         if COUNTER < 29:
