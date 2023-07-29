@@ -4,7 +4,7 @@ from DrawGrid import draw_grid
 from UpdateGrid import update_grid
 import UpdateGrid
 
-FPS = 60
+FPS = 120
 COUNTER = 0
 
 WINDOW_SIZE = [1200, 1200]
@@ -70,12 +70,13 @@ if __name__ == "__main__":
 
 
 
-        if simulating and COUNTER == 29:
+        #if simulating and COUNTER == 29:
+        if simulating:
             grid = UpdateGrid.update_grid(grid, GRID_SIZE)
 
         draw_grid(grid, screen, CELL_SIZE, GRID_SIZE)
-        if COUNTER < 29:
-            COUNTER += 1
-        else:
-            COUNTER = 0
+        #if COUNTER < 29:
+        #    COUNTER += 1
+        #else:
+        #    COUNTER = 0
         clock.tick(FPS)
