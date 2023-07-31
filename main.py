@@ -39,37 +39,14 @@ def reset_grid():
     grid = np.zeros(GRID_SIZE, dtype=int)
 
 
+
+
 if __name__ == "__main__":
     DrawGrid.draw_grid(grid,screen,CELL_SIZE,GRID_SIZE)
     simulating = False
     clock = pygame.time.Clock()
     
     
-    '''
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                quit()
-            
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE:
-                    if simulating:
-                        simulating = False
-                    else:
-                        simulating = True
-                
-                if event.key == pygame.K_c:
-                    simulating = False
-                    reset_grid()
-                    
-                    
-                if event.key == pygame.K_e and simulating == False:
-                    grid = UpdateGrid.update_grid(grid, GRID_SIZE)
-
-            if event.type == pygame.MOUSEBUTTONUP:
-                handle_mouse_event()
-    '''
     
     while True:
         keys = pygame.key.get_pressed()
@@ -94,27 +71,18 @@ if __name__ == "__main__":
                 if event.key == pygame.K_e and simulating == False:
                     grid = UpdateGrid.update_grid(grid, GRID_SIZE)
         
-        
-        
-        #if keys[pygame.K_SPACE]:
-        #    if simulating:
-        #        simulating = False
-        #    else:
-        #        simulating = True
                 
         if keys[pygame.K_LCTRL] and keys[pygame.K_c]:
             simulating = False
             reset_grid()
             
 
-        #if simulating and COUNTER == 29:
+
+
         if simulating:
             grid = UpdateGrid.update_grid(grid, GRID_SIZE)
 
         DrawGrid.draw_grid(grid, screen, CELL_SIZE, GRID_SIZE)
-        #if COUNTER < 29:
-        #    COUNTER += 1
-        #else:
-        #    COUNTER = 0
+
         clock.tick(FPS)
         
