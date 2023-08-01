@@ -1,4 +1,5 @@
 import os
+from test3_func import test0, test1
 
 local_path = os.path.dirname(__file__)
 
@@ -8,15 +9,12 @@ path = local_path + "\data.txt"
 
 order = []
 
-def test0():
-    print ("Test 0")
+#output = "Hello World"
+#output2 = "Second Output"
     
-def test1():
-    print ("Test 1")
-    
-order.append('test0()')
+order.append('test0(output)')
 order.append('test1()')
-order.append('test0()')
+order.append('test0(output2)')
 
 
 with open(path, 'w') as f:
