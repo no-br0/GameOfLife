@@ -1,5 +1,6 @@
 import numpy as np
 from Values import Dead, Mushroom, Grass, Water
+import GridRules as gr
 
 def update_grid(grid, GRID_SIZE):
     
@@ -14,54 +15,72 @@ def update_grid_modular(grid, GRID_SIZE):
     # Test Function: Works as intended
     #def rule_0():
     #    print("Hello World  (" + str(i) + "," + str(j) + ")")
-    def default():
-        neigh = np.array(grid[max(i-1, 0):min(i+2, GRID_SIZE[0]), max(j-1, 0):min(j+2, GRID_SIZE[1])])
-        neigh[1,1] = 0
-        num_neigh = neigh[neigh>0].size
+    
         
-        if grid[i,j] == 1 and (num_neigh < 2 or num_neigh > 3):
-            return 0
-        elif grid[i,j] == 0 and num_neigh == 3:
-            return 1
-        else:
-            return grid[i,j]
         
-    def default_test(range = 1, min_life = 2, max_life = 3, create_life = 3):
-        neigh = np.array(grid[max(i-range, 0):min(i+range+1,GRID_SIZE[0]), max(j-range, 0):min(j+range+1, GRID_SIZE[1])])
-        neigh[1,1] = 0
-        num_neigh = neigh[neigh>0].size
-        
-        if grid[i,j] == 1 and (num_neigh < min_life or num_neigh > max_life):
-            return 0
-        elif grid[i,j] == 0 and num_neigh == create_life:
-            return 1
-        else:
-            return grid[i,j]
-        
-    #works for making the grid loop around edges
-    def default_wrap():
-        neigh = grid.take(range(i-1, i+2), mode='wrap', axis=0).take(range(j-1, j+2), mode='wrap', axis=1)
-        neigh[1,1] = 0
-        num_neigh = neigh[neigh > 0].size
-        
-        if grid[i,j] == 1 and (num_neigh < 2 or num_neigh > 3):
-            return 0
-        elif grid[i,j] == 0 and num_neigh == 3:
-            return 1
-        else:
-            return grid[i,j]
-        
+
+
+
+    
+
+            
+    
+    
+    #has potential with some other rules added with it (Also will require simplifying)
+    def chess_knight():
+        for i in range(GRID_SIZE[0]):
+            for j in range(GRID_SIZE[1]):
+                if grid[i,j] == 1:
+                    if new_grid[i+2, j+1] == 0:
+                        new_grid[i+2, j+1] = 1
+                    
+                    if new_grid[i+2, j-1] == 0:
+                        new_grid[i+2, j-1] = 1
+                    
+                    if new_grid[i-2, j+1] == 0:
+                        new_grid[i-2, j+1] = 1
+                    
+                    if new_grid[i-2, j-1] == 0:
+                        new_grid[i-2, j-1] = 1
+                        
+                        
+                    if new_grid[i+1, j+2] == 0:
+                        new_grid[i+1, j+2] = 1
+                    
+                    if new_grid[i-1, j+2] == 0:
+                        new_grid[i-1, j+2] = 1
+                    
+                    if new_grid[i+1, j-2] == 0:
+                        new_grid[i+1, j-2] = 1
+                    
+                    if new_grid[i-1, j-2] == 0:
+                        new_grid[i-1, j-2] = 1
+                        
+                    
+                        
+                        
         
     
+    
+    # DO NOT REMOVE IS NEEDED FOR EVERYTHING EXCEPT FOR THE chess_knight() function
     
     for i in range(GRID_SIZE[0]):
         for j in range(GRID_SIZE[1]):
             #new_grid[i,j] = default_test(range = 2, min_life = 3, max_life = 5, create_life = 4)
-            new_grid[i,j] = default_wrap()
-            
-            
+            #new_grid[i,j] = gr.Simple.horivertical(grid,i,j, 2)
+            #new_grid[i,j] = gr.Simple.horivertical(grid,i,j, 3)
+            #new_grid[i,j] = gr.Simple.horivertical(grid,i,j, 1)
+            #new_grid[i,j] = gr.Chess.knight(grid,i,j, stay_alive=[1])
+            new_grid[i,j] = gr.Default.default(grid,i,j)
+
+    
+    #chess_knight()        
+
         
     return new_grid
+
+
+
 
 
 

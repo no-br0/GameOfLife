@@ -5,6 +5,7 @@ import UpdateGrid
 
 FPS = 60
 COUNTER = 0
+MAX_COUNTER = 20
 
 WINDOW_SIZE = [1200, 1200]
 GRID_SIZE = [150,150]
@@ -70,18 +71,24 @@ if __name__ == "__main__":
                 
                 if event.key == pygame.K_e and simulating == False:
                     grid = UpdateGrid.update_grid(grid, GRID_SIZE)
+                    
+                if event.key == pygame.K_c:
+                    simulating = False
+                    reset_grid()
         
                 
-        if keys[pygame.K_LCTRL] and keys[pygame.K_c]:
-            simulating = False
-            reset_grid()
+        #if keys[pygame.K_LCTRL] and keys[pygame.K_c]:
+        #    simulating = False
+        #    reset_grid()
             
 
 
 
-        if simulating:
+        if simulating and COUNTER >= MAX_COUNTER:
             grid = UpdateGrid.update_grid(grid, GRID_SIZE)
-
+            COUNTER = 0
+        else:
+            COUNTER+=1
         DrawGrid.draw_grid(grid, screen, CELL_SIZE, GRID_SIZE)
 
         clock.tick(FPS)
