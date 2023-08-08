@@ -1,7 +1,7 @@
 import GridRules as gr
 
 #works for making the grid loop around edges
-def default(grid, i, j, stay_alive:list=[2,3], become_alive:list=[3]):
+def default(grid, i, j, size=1, stay_alive:list=[2,3], become_alive:list=[3]):
     num_neigh = gr.Tools.square_neigh_count(grid,i,j)
     
     

@@ -3,7 +3,7 @@ import pygame
 import DrawGrid
 import UpdateGrid
 
-FPS = 60
+FPS = 120
 COUNTER = 0
 MAX_COUNTER = 20
 
