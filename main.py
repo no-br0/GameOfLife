@@ -3,9 +3,9 @@ import pygame
 import DrawGrid
 import UpdateGrid
 
-FPS = 120
+FPS = 60
 COUNTER = 0
-MAX_COUNTER = 1
+MAX_COUNTER = 20
 
 WINDOW_SIZE = [1200, 1200]
 GRID_SIZE = [150,150]
@@ -25,6 +25,7 @@ def handle_mouse_event():
     global grid
     # Get the position of the mouse cursor
     pos = pygame.mouse.get_pos()
+    new_grid = grid.copy()
 
     # Convert the position to grid coordinates
     i = pos[0] // CELL_SIZE[0]
@@ -32,21 +33,25 @@ def handle_mouse_event():
 
     # Toggle the state of the cell
     if grid[i, j] == 0:
-        grid[i, j] = 1
+        new_grid[i, j] = 1
     else:
-        grid[i, j] = 0
+        new_grid[i, j] = 0
+        
+    DrawGrid.draw_grid(grid, new_grid, screen, CELL_SIZE, GRID_SIZE)
+    grid = new_grid
         
 
 
 def reset_grid():
     global grid
     grid = np.zeros(GRID_SIZE, dtype=int)
+    DrawGrid.draw_grid_initial(grid, screen, CELL_SIZE, GRID_SIZE)
 
 
 
 
 if __name__ == "__main__":
-    DrawGrid.draw_grid(grid, screen,CELL_SIZE,GRID_SIZE)
+    DrawGrid.draw_grid_initial(grid, screen,CELL_SIZE,GRID_SIZE)
     simulating = False
     clock = pygame.time.Clock()
     
@@ -73,7 +78,10 @@ if __name__ == "__main__":
                         simulating = True
                 
                 if event.key == pygame.K_e and simulating == False:
-                    grid = UpdateGrid.update_grid(grid, GRID_SIZE)
+                    new_grid = UpdateGrid.update_grid(grid, GRID_SIZE)
+                    DrawGrid.draw_grid(grid, new_grid, screen, CELL_SIZE, GRID_SIZE)
+                    grid=new_grid
+                    
                     
                 if event.key == pygame.K_c:
                     simulating = False
@@ -83,14 +91,21 @@ if __name__ == "__main__":
         #if keys[pygame.K_LCTRL] and keys[pygame.K_c]:
         #    simulating = False
         #    reset_grid()
+        
+        new_grid = grid.copy()
             
 
         if simulating and COUNTER >= MAX_COUNTER:
-            grid = UpdateGrid.update_grid(grid, GRID_SIZE)            
+            #grid = UpdateGrid.update_grid(grid, GRID_SIZE)            
+            new_grid = UpdateGrid.update_grid(grid, GRID_SIZE) 
+            
             COUNTER = 0
         else:
             COUNTER+=1
             
-        DrawGrid.draw_grid(grid, screen, CELL_SIZE, GRID_SIZE)
+        DrawGrid.draw_grid(grid, new_grid, screen, CELL_SIZE, GRID_SIZE)
+        
+        grid = new_grid
+        
         clock.tick(FPS)
         

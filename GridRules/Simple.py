@@ -79,6 +79,21 @@ def horivertical_average(grid, i, j, size=1):
         return 0
     '''
     
+    
+def doughnut(grid,i,j, stay_alive=[2,3], become_alive=[3]):
+    num_neigh = t.square_neigh_count(grid,i,j,2) - t.square_neigh_count(grid,i,j,1)
+    
+    
+    if grid[i,j] == 1:
+        if num_neigh in stay_alive:
+            return 1
+        else:
+            return 0
+    else:
+        if num_neigh in become_alive:
+            return 1
+        else:
+            return 0
         
         
         
