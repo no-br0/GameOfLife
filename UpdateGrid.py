@@ -5,7 +5,7 @@ import threading
 
 def update_grid(grid, GRID_SIZE):
     
-    return update_grid_threading(grid, GRID_SIZE)
+    return update_grid_normal(grid, GRID_SIZE)
 
 
 # To Be Completed
@@ -26,10 +26,11 @@ def update_grid_normal(grid, GRID_SIZE):
         for j in range(GRID_SIZE[1]):
             #new_grid[i,j] = default_test(range = 2, min_life = 3, max_life = 5, create_life = 4)
             #new_grid[i,j] = gr.Simple.horivertical(grid,i,j, 2)
-            new_grid[i,j] = gr.Simple.horivertical(grid,i,j, 3)
+            #new_grid[i,j] = gr.Simple.horivertical(grid,i,j, 3)
             #new_grid[i,j] = gr.Simple.horivertical(grid,i,j, 1)
             #new_grid[i,j] = gr.Chess.knight(grid,i,j, stay_alive=[1])
             #new_grid[i,j] = gr.Default.default(grid,i,j)
+            new_grid[i,j] = update_multi_rule(grid,i,j, alive=gr.Chess.knight(grid,i,j, become_alive=[1], stay_alive=[1,2]),  dead=gr.Simple.horivertical(grid,i,j,1,stay_alive=[2], become_alive=[1]))
 
     
     #chess_knight()        

@@ -5,7 +5,7 @@ import UpdateGrid
 
 FPS = 120
 COUNTER = 0
-MAX_COUNTER = 20
+MAX_COUNTER = 1
 
 WINDOW_SIZE = [1200, 1200]
 GRID_SIZE = [150,150]
@@ -22,6 +22,7 @@ grid = np.zeros(GRID_SIZE, dtype=int)
 
 
 def handle_mouse_event():
+    global grid
     # Get the position of the mouse cursor
     pos = pygame.mouse.get_pos()
 
@@ -34,6 +35,8 @@ def handle_mouse_event():
         grid[i, j] = 1
     else:
         grid[i, j] = 0
+        
+
 
 def reset_grid():
     global grid
@@ -43,7 +46,7 @@ def reset_grid():
 
 
 if __name__ == "__main__":
-    DrawGrid.draw_grid(grid,screen,CELL_SIZE,GRID_SIZE)
+    DrawGrid.draw_grid(grid, screen,CELL_SIZE,GRID_SIZE)
     simulating = False
     clock = pygame.time.Clock()
     
@@ -82,14 +85,12 @@ if __name__ == "__main__":
         #    reset_grid()
             
 
-
-
         if simulating and COUNTER >= MAX_COUNTER:
-            grid = UpdateGrid.update_grid(grid, GRID_SIZE)
+            grid = UpdateGrid.update_grid(grid, GRID_SIZE)            
             COUNTER = 0
         else:
             COUNTER+=1
+            
         DrawGrid.draw_grid(grid, screen, CELL_SIZE, GRID_SIZE)
-
         clock.tick(FPS)
         
