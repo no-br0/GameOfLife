@@ -1,30 +1,30 @@
 import numpy as np
 
-def square_neigh(grid, i, j, size=1):
-    neigh = grid.take(range(i-size, i+size+1), mode='wrap', axis=0).take(range(j-size, j+size+1), mode='wrap', axis=1)
-    neigh[size,size] = 0
+def square_neigh(grid, i, j, reach=1):
+    neigh = grid.take(range(i-reach, i+reach+1), mode='wrap', axis=0).take(range(j-reach, j+reach+1), mode='wrap', axis=1)
+    neigh[reach,reach] = 0
     return neigh
 
-def square_neigh_count(grid, i, j, size=1):
-    neigh = square_neigh(grid,i,j,size)
+def square_neigh_count(grid, i, j, reach=1):
+    neigh = square_neigh(grid,i,j,reach)
     return neigh[neigh>0].size
 
-def horizontal_neigh(grid, i, j, size=1):
-    neigh = grid.take(range(i-size, i+size+1), mode='wrap', axis=0).take(range(j, j+1), mode='wrap', axis=1)
-    neigh[size,0] = 0
+def horizontal_neigh(grid, i, j, reach=1):
+    neigh = grid.take(range(i-reach, i+reach+1), mode='wrap', axis=0).take(range(j, j+1), mode='wrap', axis=1)
+    neigh[reach,0] = 0
     return neigh
 
-def horizontal_neigh_count(grid, i, j, size=1):
-    neigh = horizontal_neigh(grid,i,j, size)
+def horizontal_neigh_count(grid, i, j, reach=1):
+    neigh = horizontal_neigh(grid,i,j, reach)
     return neigh[neigh>0].size
     
-def vertical_neigh(grid, i, j, size=1):
-    neigh = grid.take(range(i,i+1), mode='wrap', axis=0).take(range(j-size, j+size+1), mode='wrap', axis=1)
-    neigh[0,size] = 0
+def vertical_neigh(grid, i, j, reach=1):
+    neigh = grid.take(range(i,i+1), mode='wrap', axis=0).take(range(j-reach, j+reach+1), mode='wrap', axis=1)
+    neigh[0,reach] = 0
     return neigh
 
-def vertical_neigh_count(grid, i,j, size=1):
-    neigh = vertical_neigh(grid, i, j, size)
+def vertical_neigh_count(grid, i,j, reach=1):
+    neigh = vertical_neigh(grid, i, j, reach)
     return neigh[neigh>0].size
 
 

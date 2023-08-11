@@ -1,8 +1,8 @@
 from GridRules import Tools as t
 
 
-def horizontal(grid, i, j, size=1, stay_alive:list=[1], become_alive=[1]):
-    num_neigh = t.horizontal_neigh_count(grid,i,j, size)
+def horizontal(grid, i, j, reach=1, stay_alive:list=[1], become_alive=[1]):
+    num_neigh = t.horizontal_neigh_count(grid, i, j, reach)
     
     
     
@@ -29,8 +29,8 @@ def horizontal(grid, i, j, size=1, stay_alive:list=[1], become_alive=[1]):
     
     
     
-def vertical(grid, i, j, size=1, stay_alive:list=[1], become_alive:list=[1]):
-    num_neigh = t.vertical_neigh_count(grid, i,j, size)
+def vertical(grid, i, j, reach=1, stay_alive:list=[1], become_alive:list=[1]):
+    num_neigh = t.vertical_neigh_count(grid, i, j, reach)
     
     if grid[i,j] == 0:
         if num_neigh in become_alive:
@@ -45,8 +45,8 @@ def vertical(grid, i, j, size=1, stay_alive:list=[1], become_alive:list=[1]):
     
     
 
-def horivertical(grid, i, j, size=1, stay_alive:list=[2,3], become_alive:list=[2]):
-    num_neigh = t.horizontal_neigh_count(grid,i,j, size) + t.vertical_neigh_count(grid,i,j, size)
+def horivertical(grid, i, j, reach=1, stay_alive:list=[2,3], become_alive:list=[2]):
+    num_neigh = t.horizontal_neigh_count(grid, i, j, reach) + t.vertical_neigh_count(grid,i,j, reach)
     
     if grid[i,j] == 1:
         if num_neigh in stay_alive:
@@ -62,9 +62,9 @@ def horivertical(grid, i, j, size=1, stay_alive:list=[2,3], become_alive:list=[2
 
 
 # Still to be worked on
-def horivertical_average(grid, i, j, size=1):
-    vert = vertical(grid,i,j,size)
-    hori = horizontal(grid,i,j,size)
+def horivertical_average(grid, i, j, reach=1):
+    vert = vertical(grid, i, j, reach)
+    hori = horizontal(grid, i, j, reach)
     
         
     if (vert == 1 and hori == 0) or (vert == 0 and hori == 1):

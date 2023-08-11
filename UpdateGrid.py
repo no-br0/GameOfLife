@@ -1,5 +1,4 @@
 import numpy as np
-from Values import Dead, Mushroom, Grass, Water
 import GridRules as gr
 import threading 
 
