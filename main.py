@@ -43,17 +43,15 @@ def main(main_window:Main_Window, action_window:Action_Window):
                 main_window.COUNTER+=1
             
         
-        
-        
         action_window.root.update()
         
         clock.tick(main_window.FPS)
 
 
 
-#if __name__ == "__main__":
-main_window = Main_Window()
-action_window = Action_Window(main_window)
-main(main_window, action_window)
+if __name__ == "__main__":
+    main_window = Main_Window()
+    action_window = Action_Window(main_window)
+    main(main_window, action_window)
     
         
