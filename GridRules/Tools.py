@@ -45,6 +45,7 @@ def knight_neigh(grid, i,j):
     
     return neigh
 
+#May Require some changes when cells greater than 1 are implemented
 def knight_neigh_count(grid, i, j):
     neigh = knight_neigh(grid, i, j)        
     return sum(neigh)
