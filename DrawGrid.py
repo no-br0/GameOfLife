@@ -1,6 +1,5 @@
 import pygame
 from Colors import colors
-from Values import *
 
 
 def draw_grid_initial(grid, screen, CELL_SIZE, GRID_SIZE):

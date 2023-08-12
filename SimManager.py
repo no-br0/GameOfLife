@@ -13,6 +13,7 @@ class Main_Window():
         self.action_window = None
         self.WINDOW_SIZE = [1200, 1200]
         self.GRID_SIZE = [150,150]
+        self.on_click_value = 1
 
         self.CELL_SIZE = [self.WINDOW_SIZE[0]// self.GRID_SIZE[0], self.WINDOW_SIZE[1]//self.GRID_SIZE[1]]
         
@@ -39,7 +40,7 @@ class Main_Window():
 
         # Toggle the state of the cell
         if self.grid[i, j] == 0:
-            new_grid[i, j] = 1
+            new_grid[i, j] = self.on_click_value
         else:
             new_grid[i, j] = 0
             
