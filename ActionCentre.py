@@ -9,6 +9,7 @@ class Action_Window():
         
         self.root = tk.Tk()
         self.root.geometry("300x900+200+300")
+        self.root.title("Action Centre")
         
         # for playing and pausing game
         self.play_pause_button = tk.Button(self.root, text="Play", command=main_window.alternate_play_pause)
@@ -30,6 +31,7 @@ class Action_Window():
         for i in range(len(colors)):
             self.grid_set_dropdown_options.append(str(i))
         
+        #Stores the value that is currently slected in the DropDown
         self.grid_set_dropdown_selected = tk.StringVar()
         self.grid_set_dropdown_selected.set("1")
         

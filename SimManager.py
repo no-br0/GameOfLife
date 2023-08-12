@@ -21,7 +21,7 @@ class Main_Window():
 
         pygame.init()
 
-        pygame.display.set_caption("Basic Game Of Life")
+        pygame.display.set_caption("Game Of Cells")
 
         self.screen = pygame.display.set_mode(self.WINDOW_SIZE)
 
