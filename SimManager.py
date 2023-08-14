@@ -3,7 +3,7 @@ import DrawGrid
 import UpdateGrid
 import numpy as np
 import tkinter as tk
-
+import LateUpdate as lu
 
 class Main_Window():
     def __init__(self):
@@ -28,6 +28,8 @@ class Main_Window():
         self.grid = np.zeros(self.GRID_SIZE, dtype=int)
 
 
+
+
     def handle_mouse_event(self):
         #global grid
         # Get the position of the mouse cursor
@@ -47,9 +49,13 @@ class Main_Window():
         DrawGrid.draw_grid(self.grid, new_grid, self.screen, self.CELL_SIZE, self.GRID_SIZE)
         self.grid = new_grid
             
+    
+            
+
 
     def step(self):
         new_grid = UpdateGrid.update_grid(self.grid, self.GRID_SIZE)
+        new_grid = lu.late_update(new_grid, self.GRID_SIZE)
         DrawGrid.draw_grid(self.grid, new_grid, self.screen, self.CELL_SIZE, self.GRID_SIZE)
         self.grid=new_grid
         

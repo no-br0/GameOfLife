@@ -23,3 +23,5 @@ for i in l:
     
 for i in l2:
     i()
+    
+print(11%10)

@@ -1,5 +1,6 @@
 from GridRules import Tools as t
-
+import LateUpdate as lu
+import random
 
 def horizontal(grid, i, j, reach=1, stay_alive:list=[1], become_alive=[1]):
     num_neigh = t.horizontal_neigh_count(grid, i, j, reach)
@@ -94,6 +95,12 @@ def doughnut(grid,i,j, stay_alive=[2,3], become_alive=[3]):
             return 1
         else:
             return 0
+        
+def move_down(grid,i,j):
+    if grid[i,j] == 1:
+        #lu.late_update_values.append((1, (i, j+random.randint(0,5))))
+        lu.late_update_values.append((1, (i,j+1)))
+    return 0
         
         
         

@@ -7,6 +7,16 @@ def update_grid(grid, GRID_SIZE):
     return update_grid_normal(grid, GRID_SIZE)
 
 
+def update_multi_rule(grid, i,j, alive, dead):
+    if grid[i,j] == 0:
+        return dead
+    elif grid[i,j] == 1:
+        return alive
+    else:
+        print("Error: Cell Exceeds Maximum Value.")
+        return None
+
+
 # To Be Completed
 def update_grid_modular(grid, GRID_SIZE):
     new_grid = grid.copy()
@@ -20,48 +30,26 @@ def update_grid_modular(grid, GRID_SIZE):
 def update_grid_normal(grid, GRID_SIZE):
     new_grid = grid.copy()
     
-    # DO NOT REMOVE IS NEEDED FOR EVERYTHING EXCEPT FOR THE chess_knight() function
     for i in range(GRID_SIZE[0]):
         for j in range(GRID_SIZE[1]):
-            #new_grid[i,j] = default_test(range = 2, min_life = 3, max_life = 5, create_life = 4)
-            #new_grid[i,j] = gr.Simple.horivertical(grid,i,j, 2)
-            #new_grid[i,j] = gr.Simple.horivertical(grid,i,j, 3)
-            #new_grid[i,j] = gr.Simple.horivertical(grid,i,j, 1)
-            #new_grid[i,j] = gr.Chess.knight(grid,i,j, stay_alive=[6], become_alive=[1])
-            new_grid[i,j] = gr.Default.default(grid,i,j)
-            #new_grid[i,j] = update_multi_rule(grid,i,j, alive=gr.Chess.knight(grid,i,j, become_alive=[1], stay_alive=[1,2]),  dead=gr.Simple.horivertical(grid,i,j,1,stay_alive=[2], become_alive=[1]))
+            new_grid[i,j] = gr.Simple.move_down(grid,i,j)
+            #new_grid[i,j] = gr.Default.default(grid,i,j)
             
-            
-            #new_grid[i,j] = gr.Chess.knight(grid,i,j, stay_alive=[1], become_alive=[2,3])
-            #new_grid[i,j] = gr.Chess.knight(grid,i,j, stay_alive=[1])
-            #new_grid[i,j] = gr.Simple.horivertical(grid,i,j,2)
-            #new_grid[i,j] = gr.Default.default(grid, i, j, 2,stay_alive=[3,5], become_alive=[2,4])
-            #new_grid[i,j] = gr.Default.default(grid, i, j, 2,stay_alive=[3,4], become_alive=[3,4])
-            #new_grid[i,j] = gr.Default.default(grid, i, j, 3,stay_alive=[3,4], become_alive=[3,4])
-            #new_grid[i,j] = gr.Default.default(grid, i, j, 3,stay_alive=[2,3], become_alive=[3])
-            #new_grid[i,j] = gr.Simple.horivertical(grid, i, j, 3, stay_alive=[2,3], become_alive=[2,4])
-            #new_grid[i,j] = update_multi_rule(grid,i,j, alive=gr.Simple.horivertical(grid,i,j,1), dead=gr.Default.default(grid,i,j, become_alive=[2]))
-            #new_grid[i,j] = update_multi_rule(grid,i,j, alive=gr.Chess.knight(grid,i,j,stay_alive=[1]), dead=gr.Default.default(grid,i,j, become_alive=[2]))
-            #new_grid[i,j] = update_multi_rule(grid,i,j, alive=gr.Default.default(grid,i,j), dead=gr.Chess.knight(grid,i,j, become_alive=[1]))
-            #new_grid[i,j] = update_multi_rule(grid,i,j, alive=gr.Default.default(grid,i,j, stay_alive=[2]), dead=gr.Chess.knight(grid,i,j, become_alive=[2]))
-            #new_grid[i,j] = update_multi_rule(grid,i,j, dead=gr.Simple.horivertical(grid,i,j, become_alive=[1,2]), alive=gr.Default.default(grid,i,j, become_alive=[2]))
-            #new_grid[i,j] = update_multi_rule(grid,i,j, dead=gr.Chess.knight(grid,i,j, become_alive=[1]),  alive=gr.Simple.horivertical(grid,i,j,1,stay_alive=[2]))
-            #new_grid[i,j] = gr.Simple.doughnut(grid,i,j, stay_alive = [2,12], become_alive=[2,9])
             
             
     return new_grid
 
 
     
-def update_multi_rule(grid, i,j, alive, dead):
-    if grid[i,j] == 0:
-        return dead
-    elif grid[i,j] == 1:
-        return alive
-    else:
-        print("Error: Cell Exceeds Maximum Value.")
-        return None
-        
+
+
+
+
+
+
+
+
+
 
 def update_grid_segement(grid, new_grid, range_i:list=[0,0], range_j:list=[0,0]):
     for i in range(range_i[0], range_i[1]):
