@@ -1,6 +1,7 @@
 import numpy as np
 import GridRules as gr
 import threading 
+from random import randint
 
 def update_grid(grid, GRID_SIZE):
     
@@ -32,8 +33,9 @@ def update_grid_normal(grid, GRID_SIZE):
     
     for i in range(GRID_SIZE[0]):
         for j in range(GRID_SIZE[1]):
-            new_grid[i,j] = gr.Simple.move_down(grid,i,j)
-            #new_grid[i,j] = gr.Default.default(grid,i,j)
+            state_to_change = randint(0,1)
+            #new_grid[i,j] = gr.Simple.move_down(grid,i,j)
+            new_grid[i,j, state_to_change] = gr.Default.default(grid,i,j, stay_alive=[2,3], become_alive=[2])
             
             
             

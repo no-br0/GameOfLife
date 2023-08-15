@@ -4,6 +4,7 @@ import UpdateGrid
 import numpy as np
 import tkinter as tk
 import LateUpdate as lu
+from random import randint
 
 class Main_Window():
     def __init__(self):
@@ -12,7 +13,7 @@ class Main_Window():
         self.MAX_COUNTER = 10
         self.action_window = None
         self.WINDOW_SIZE = [1200, 1200]
-        self.GRID_SIZE = [150,150]
+        self.GRID_SIZE = [50,50,2]
         self.on_click_value = 1
 
         self.CELL_SIZE = [self.WINDOW_SIZE[0]// self.GRID_SIZE[0], self.WINDOW_SIZE[1]//self.GRID_SIZE[1]]
@@ -39,12 +40,12 @@ class Main_Window():
         # Convert the position to grid coordinates
         i = pos[0] // self.CELL_SIZE[0]
         j = pos[1] // self.CELL_SIZE[1]
-
+        state_to_change = randint(0,1)
         # Toggle the state of the cell
-        if self.grid[i, j] == 0:
-            new_grid[i, j] = self.on_click_value
+        if self.grid[i, j, state_to_change] == 0:
+            new_grid[i, j, state_to_change] = self.on_click_value
         else:
-            new_grid[i, j] = 0
+            new_grid[i, j, state_to_change] = 0
             
         DrawGrid.draw_grid(self.grid, new_grid, self.screen, self.CELL_SIZE, self.GRID_SIZE)
         self.grid = new_grid
@@ -55,7 +56,7 @@ class Main_Window():
 
     def step(self):
         new_grid = UpdateGrid.update_grid(self.grid, self.GRID_SIZE)
-        new_grid = lu.late_update(new_grid, self.GRID_SIZE)
+        #new_grid = lu.late_update(new_grid, self.GRID_SIZE)
         DrawGrid.draw_grid(self.grid, new_grid, self.screen, self.CELL_SIZE, self.GRID_SIZE)
         self.grid=new_grid
         
