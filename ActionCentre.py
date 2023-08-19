@@ -31,7 +31,7 @@ class Action_Window():
         for i in range(len(colors)):
             self.grid_set_dropdown_options.append(str(i))
         
-        #Stores the value that is currently slected in the DropDown
+        #Stores the value that is currently selected in the DropDown
         self.grid_set_dropdown_selected = tk.StringVar()
         self.grid_set_dropdown_selected.set("1")
         

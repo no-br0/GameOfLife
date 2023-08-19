@@ -1,8 +1,7 @@
 from GridRules import Tools as t
-import LateUpdate as lu
-import random
+from random import randint
 
-def horizontal(grid, i, j, reach=1, stay_alive:list=[1], become_alive=[1]):
+def horizontal(grid, i, j, reach=1, stay_alive:list=[1], become_alive:list=[1]):
     num_neigh = t.horizontal_neigh_count(grid, i, j, reach)
     
     
@@ -81,8 +80,8 @@ def horivertical_average(grid, i, j, reach=1):
     '''
     
     
-def doughnut(grid,i,j, stay_alive=[2,3], become_alive=[3]):
-    num_neigh = t.square_neigh_count(grid,i,j,2) - t.square_neigh_count(grid,i,j,1)
+def doughnut(grid,i,j, inner_reach = 1, outer_reach = 2, stay_alive=[2,3], become_alive=[3]):
+    num_neigh = t.square_neigh_count(grid,i,j,outer_reach) - t.square_neigh_count(grid,i,j,inner_reach)
     
     
     if grid[i,j] == 1:
@@ -96,11 +95,5 @@ def doughnut(grid,i,j, stay_alive=[2,3], become_alive=[3]):
         else:
             return 0
         
-def move_down(grid,i,j):
-    if grid[i,j] == 1:
-        #lu.late_update_values.append((1, (i, j+random.randint(0,5))))
-        lu.late_update_values.append((1, (i,j+1)))
-    return 0
         
-        
-        
+

@@ -15,3 +15,6 @@ def late_update(new_grid:np.array, GRID_SIZE):
             new_grid[pos[0]%GRID_SIZE[0], pos[1]%GRID_SIZE[1]] = value
         late_update_values.clear()
     return new_grid
+
+def add_late_value(value:int, x:int, y:int):
+    late_update_values.append((value,(x,y)))

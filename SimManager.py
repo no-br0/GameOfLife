@@ -55,7 +55,7 @@ class Main_Window():
 
     def step(self):
         new_grid = UpdateGrid.update_grid(self.grid, self.GRID_SIZE)
-        new_grid = lu.late_update(new_grid, self.GRID_SIZE)
+        #new_grid = lu.late_update(new_grid, self.GRID_SIZE)
         DrawGrid.draw_grid(self.grid, new_grid, self.screen, self.CELL_SIZE, self.GRID_SIZE)
         self.grid=new_grid
         

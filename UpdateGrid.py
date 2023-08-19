@@ -1,10 +1,15 @@
 import numpy as np
 import GridRules as gr
 import threading 
+from GridRules.DataTypes import transition, neigh_transition
+from GridRules import Tools as t
+
+
 
 def update_grid(grid, GRID_SIZE):
     
     return update_grid_normal(grid, GRID_SIZE)
+
 
 
 def update_multi_rule(grid, i,j, alive, dead):
@@ -17,6 +22,7 @@ def update_multi_rule(grid, i,j, alive, dead):
         return None
 
 
+
 # To Be Completed
 def update_grid_modular(grid, GRID_SIZE):
     new_grid = grid.copy()
@@ -27,16 +33,52 @@ def update_grid_modular(grid, GRID_SIZE):
     return new_grid
 
 
+
 def update_grid_normal(grid, GRID_SIZE):
     new_grid = grid.copy()
     
     for i in range(GRID_SIZE[0]):
         for j in range(GRID_SIZE[1]):
-            new_grid[i,j] = gr.Simple.move_down(grid,i,j)
+            #new_grid[i,j] = gr.Simple.move_down(grid,i,j)
+            #new_grid[i,j] = gr.Simple.default_move_down(grid,i,j)
+            #new_grid[i,j] = gr.TestMove.move_random3(grid,i,j)
             #new_grid[i,j] = gr.Default.default(grid,i,j)
-            
-            
-            
+            '''
+            new_grid[i,j] = gr.Default.expanded_default(grid,i,j, 
+                                                        condition=
+                                                        [transition(0,1,(1,2)), 
+                                                         transition(1,1,(2,3)),
+                                                         transition(1,2,(4,))])
+            '''
+            '''
+            new_grid[i,j] = gr.Default.expanded_default(grid,i,j,
+                                                        condition=
+                                                        [transition(0,1,(2,6)),
+                                                         transition(1,1,(2,)),
+                                                         transition(1,2,(3,)),
+                                                         transition(2,2,(1,3)),
+                                                         transition(2,1,(2,))])
+            '''
+            '''
+            new_grid[i,j] = gr.Default.expanded_default2(grid,i,j,
+                                                         condition=[
+                                                          transition(0,1,(2,3)),
+                                                          transition(0,2,(4,5)),
+                                                          transition(1,1,(2,)),
+                                                          transition(1,2,(3,)),
+                                                          transition(2,2,(0,1))
+                                                          ])
+            '''
+            '''
+            new_grid[i,j] = gr.Default.universal_rule(grid,i,j,
+                                                      rule=t.square_neigh_count(grid,i,j),
+                                                      condition=[transition(0,1,(3,)),
+                                                                 transition(1,1,(2,3))])
+            '''
+            new_grid[i,j] = gr.Default.conditional_rule(grid,i,j,
+                                                        condition=[neigh_transition(0,1,(1,), t.horivertical_neigh_count(grid,i,j)),
+                                                                   neigh_transition(1,1,(1,2), t.horivertical_neigh_count(grid,i,j))]
+                                                        )
     return new_grid
 
 

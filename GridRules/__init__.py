@@ -1,1 +1,1 @@
-from . import Default, Tools, Chess, Simple
+from . import Default, Tools, Chess, Simple, TestMove

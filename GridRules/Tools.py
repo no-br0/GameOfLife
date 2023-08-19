@@ -9,14 +9,27 @@ def square_neigh_count(grid, i, j, reach=1):
     neigh = square_neigh(grid,i,j,reach)
     return neigh[neigh>0].size
 
+def square_neigh_count_num(grid,i,j, value, reach=1):
+    neigh = square_neigh(grid,i,j,reach)
+    return neigh[neigh==value].size
+
+
+
+
 def horizontal_neigh(grid, i, j, reach=1):
     neigh = grid.take(range(i-reach, i+reach+1), mode='wrap', axis=0).take(range(j, j+1), mode='wrap', axis=1)
     neigh[reach,0] = 0
     return neigh
 
 def horizontal_neigh_count(grid, i, j, reach=1):
-    neigh = horizontal_neigh(grid,i,j, reach)
+    neigh = horizontal_neigh(grid, i, j, reach)
     return neigh[neigh>0].size
+    
+def horizontal_neigh_count_num(grid, i, j, value, reach=1):
+    neigh = horizontal_neigh(grid, i, j, reach)
+    return neigh[neigh==value].size
+    
+    
     
 def vertical_neigh(grid, i, j, reach=1):
     neigh = grid.take(range(i,i+1), mode='wrap', axis=0).take(range(j-reach, j+reach+1), mode='wrap', axis=1)
@@ -26,6 +39,25 @@ def vertical_neigh(grid, i, j, reach=1):
 def vertical_neigh_count(grid, i,j, reach=1):
     neigh = vertical_neigh(grid, i, j, reach)
     return neigh[neigh>0].size
+
+def vertical_neigh_count_num(grid, i, j, value, reach=1):
+    neigh = vertical_neigh(grid, i, j, reach)
+    return neigh[neigh==value].size
+
+
+
+def horivertical_neigh_count(grid,i,j,reach=1):
+    vertical = vertical_neigh(grid,i,j,reach)
+    horizontal = horizontal_neigh(grid,i,j,reach)
+    output = vertical[vertical>0].size + horizontal[horizontal>0].size
+    return output
+
+def horivertical_neigh_count_num(grid,i,j,value,reach=1):
+    vertical = vertical_neigh(grid,i,j,reach)
+    horizontal = horizontal_neigh(grid,i,j,reach)
+    output = vertical[vertical==value].size + horizontal[horizontal==value].size
+    return output
+
 
 
 def knight_neigh(grid, i,j):
