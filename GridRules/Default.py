@@ -51,20 +51,5 @@ def expanded_default2(grid, i, j, reach:int=1, condition:list[transition] = [tra
     
     
     
-def universal_rule(grid,i,j, rule:int, condition:list[transition]= [transition(0,1,(3,)), transition(1,1,(2,3))]):
-    num_neigh = rule
-    
-    for x in range(len(condition)):
-        if grid[i,j] == condition[x].curstate:
-            if num_neigh in condition[x].condition:
-                return condition[x].nextstate
-    return 0
 
-
-def conditional_rule(grid,i,j, condition:list[neigh_transition]):
-    for x in range(len(condition)):
-        if grid[i,j] == condition[x].curstate:
-            if condition[x].num_neigh in condition[x].condition:
-                return condition[x].nextstate
-    return 0
     
