@@ -56,6 +56,7 @@ def conditional_rule(grid,i,j, condition:list[neigh_transition]):
 
 
 
+
 def update_grid_normal(grid, GRID_SIZE):
     new_grid = grid.copy()
     
@@ -97,10 +98,20 @@ def update_grid_normal(grid, GRID_SIZE):
                                                       condition=[transition(0,1,(3,)),
                                                                  transition(1,1,(2,3))])
             '''
+            '''
             new_grid[i,j] = conditional_rule(grid,i,j,
                                                         condition=[neigh_transition(0,1,(2,4), t.square_neigh_count(grid,i,j)),
                                                                    neigh_transition(1,1,(2,3), t.horivertical_neigh_count(grid,i,j))]
                                                         )
+            '''
+            new_grid[i,j] = conditional_rule(grid,i,j,
+                                             condition=[
+                                                 neigh_transition(0,1,(6,), t.knight_neigh_count(grid,i,j)),
+                                                 neigh_transition(0,1,(2,), t.horivertical_neigh_count(grid,i,j)),
+                                                 neigh_transition(0,1,(3,4,6), t.square_neigh_count(grid,i,j)),
+                                                 neigh_transition(1,1,(2,3), t.square_neigh_count(grid,i,j))
+                                             ])
+            
     return new_grid
 
 
